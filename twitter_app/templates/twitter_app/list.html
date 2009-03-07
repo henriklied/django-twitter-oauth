@@ -1,0 +1,12 @@
+{% extends "twitter_app/base.html" %}
+
+{% block content %}
+<h2>Here comes your friends:</h2>
+<ul>
+	{% for json in users %}
+		{% for twitter in json %}
+			<li><a href="http://twitter.com/{{ twitter.screen_name }}">{{ twitter.screen_name }}</a></li>
+		{% endfor %}
+	{% endfor %}
+</ul>
+{% endblock %}
