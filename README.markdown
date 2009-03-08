@@ -6,6 +6,13 @@
 - Django 1.0 (or trunk)
 - Twitter oAuth closed beta invite
 
+## Installation
+Add the 'twitter_app' directory somewhere on your 'PYTHONPATH', put it into 'INSTALLED_APPS' in your settings file.
+Fill in your CONSUMER_KEY and CONSUMER_SECRET either in 'twitter_app/utils.py' or in your settings file.
+Include 'twitter_app.urls' in your base 'urls.py'
+
+You're good to go!
+
 ## API Usage
 Use the API resources listed on the [REST API Documentation](http://apiwiki.twitter.com/REST+API+Documentation).
 I've currently implemented two functions, which you can see in the end of twitter_app/utils.py.
@@ -30,9 +37,3 @@ Then, in your views.py, you could define a simplistic function like so:
 			message = simplejson.loads(message)
 		return return render_to_response('twitter_app/delete_tweet.html', {'message': message})
 
-## Installation
-Add the 'twitter_app' directory somewhere on your 'PYTHONPATH', put it into 'INSTALLED_APPS' in your settings file.
-Fill in your CONSUMER_KEY and CONSUMER_SECRET either in 'twitter_app/utils.py' or in your settings file.
-Include 'twitter_app.urls' in your base 'urls.py'
-
-You're good to go!
