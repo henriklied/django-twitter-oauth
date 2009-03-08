@@ -5,7 +5,27 @@
 <ul>
 	{% for json in users %}
 		{% for twitter in json %}
-			<li><a href="http://twitter.com/{{ twitter.screen_name }}">{{ twitter.screen_name }}</a></li>
+			<li>
+				<div class="twitter_user {% cycle even,odd as rowcolors %}">
+					<div class="image">
+					<img src="{{ twitter.profile_image_url }}" alt="{{ twitter.screen_name }}'s avatar">
+					</div>
+					<dl>
+						<dt>Username</dt>
+						<dd><a href="http://twitter.com/{{ twitter.screen_name }}/">{{ twitter.screen_name }}</a></dd>
+						
+						<dt>Full name</dt>
+						<dd>{{ twitter.name|default:"Not specified" }}</dd>
+						
+						<dt>Status</dt>
+						<dd><em>{{ twitter.status.text }}</em></dd>
+						
+						<div class="clearer"></div>
+						
+					</dl>
+					<div class="clearer"></div>
+				</div>
+			</li>
 		{% endfor %}
 	{% endfor %}
 </ul>

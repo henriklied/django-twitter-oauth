@@ -5,22 +5,112 @@
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 		<title>Twitter Example</title>
 		<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			font-size: 80%;
+		}
 		#wrap {
-			width: 600px;
-			margin: 1em auto;
+			width: 700px;
+			margin: 0em auto;
+			line-height: 1.6;
 			font-family: Helvetica, Arial, sans-serif;
+		}
+		#header {
+			background: #111;
+			color: white;
+		}
+		#header, #content {
+			padding: 10px;
+		}
+		h1 {
+			font-family: Georgia;
+			font-weight: 100;
+			font-style: italic;
+			font-size: 30px;
+			padding-top: 50px;
+		}
+		
+		.auth {
+			font-size: 30px;
+			color: white;
+			background: #222;
+			padding: 25px;
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
+			border-radius: 10px;
+		}
+		.auth:hover {
+			background: #000;
+		}
+		
+		.odd {
+			background: #f3f3f3;
+		}
+		
+		ul {
+			list-style: none;
+		}
+		
+		dl {
+			width: 500px;
+			float: right;
+		}
+		dt {
+			float: left;
+			width: 100px;
+			text-transform: uppercase;
+			font-weight: bold;
+		}
+		dd {
+			float: right;
+			width: 350px;
+			color: #666;
+			text-align: right;
+		}
+		
+		.image {
+			float: left;
+			margin-right: 20px;
+			width: 100px;
+			text-align: center;
+		}
+		.twitter_user {
+			padding: 20px;
+			border-bottom: 1px solid #f1f1f1;
+		}
+		.clearer {
+			clear: both;
+		}
+		
+		h2 {
+			font-size: 34px;
+			margin-top: 20px;
+			color: #0b73de;
+			margin-bottom: 5px;
+		}
+		p {
+			margin-bottom: 1.5em;
 		}
 		</style>
 	</head>
 	
 	<body>
 		<div id="wrap">
+			<div id="header">
 			<h1>Twitter oAuth example</h1>
-			
-			
+			</div>
+			<div id="content">
 			{% block content %}
-				<p><a href="auth/">Authenticate on Twitter</a></p>
+				<h2>Welcome!</h2>
+				<p>This sample application is here to show you how you can authenticate against Twitter using their 
+					new oAuth API.<br>Press the big button below to authenticate.</p>
+					
+				<p><a class="auth" href="auth/">Authenticate »</a></p>
 			{% endblock %}
+			</div>
 			
 		</div>
 	</body>
