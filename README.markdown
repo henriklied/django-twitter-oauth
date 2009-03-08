@@ -1,4 +1,6 @@
 # django-twitter-oauth
+**Live example can be seen [http://fourmargins.com/labs/twitter_oauth](@fourmargins.com/labs/twitter_oauth/)!**
+
 
 ## Requirements
 - Django 1.0 (or trunk)
