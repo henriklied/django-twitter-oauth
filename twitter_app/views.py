@@ -1,4 +1,15 @@
-import oauth, httplib, simplejson, time, datetime
+import oauth, httplib, time, datetime
+
+try:
+    import simplejson
+except ImportError:
+    try:
+        import json as simplejson
+    except ImportError:
+        try:
+            from django.utils import simplejson
+        except:
+            raise "Requires either simplejson, Python 2.6 or django.utils!"
 
 from django.http import *
 from django.shortcuts import render_to_response
