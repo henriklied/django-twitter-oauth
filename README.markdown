@@ -5,12 +5,15 @@
 
 ## Requirements
 - Django 1.0 (or trunk)
-- Twitter oAuth closed beta invite
+- You must [register a new Twitter oAuth application](http://twitter.com/oauth_clients/). Set your application's Callback URL to "http://mysite.com/twitter/return/".
+
 
 ## Installation
 Add the 'twitter_app' directory somewhere on your 'PYTHONPATH', put it into 'INSTALLED_APPS' in your settings file.
 Fill in your CONSUMER_KEY and CONSUMER_SECRET either in 'twitter_app/utils.py' or in your settings file.
-Include 'twitter_app.urls' in your base 'urls.py'
+
+- Add this line to your Django project's urlconf: 
+    url(r'^twitter/', include('twitter_app.urls')),
 
 You're good to go!
 
