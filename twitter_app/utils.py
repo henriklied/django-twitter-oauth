@@ -16,13 +16,13 @@ CONSUMER_SECRET = getattr(settings, 'CONSUMER_SECRET', 'YOUR_SECRET')
 TWITTER_CHECK_AUTH = 'https://twitter.com/account/verify_credentials.json'
 TWITTER_FRIENDS = 'https://twitter.com/statuses/friends.json'
 
-def request_oauth_resource(consumer, url, access_token, parameters=None, signature_method=signature_method):
+def request_oauth_resource(consumer, url, access_token, parameters=None, signature_method=signature_method, http_method="GET"):
     """
     usage: request_oauth_resource( consumer, '/url/', your_access_token, parameters=dict() )
     Returns a OAuthRequest object
     """
     oauth_request = oauth.OAuthRequest.from_consumer_and_token(
-        consumer, token=access_token, http_url=url, parameters=parameters,
+        consumer, token=access_token, http_method=http_method, http_url=url, parameters=parameters,
     )
     oauth_request.sign_request(signature_method, consumer, access_token)
     return oauth_request
@@ -70,5 +70,15 @@ def is_authenticated(consumer, connection, access_token):
 def get_friends(consumer, connection, access_token, page=0):
     """Get friends on Twitter"""
     oauth_request = request_oauth_resource(consumer, TWITTER_FRIENDS, access_token, {'page': page})
+    json = fetch_response(oauth_request, connection)
+    return json
+
+def update_status(consumer, connection, access_token, status):
+    """Update twitter status, i.e., post a tweet"""
+    oauth_request = request_oauth_resource(consumer,
+                                           TWITTER_UPDATE_STATUS,
+                                           access_token,
+                                           {'status': status},
+                                           http_method='POST')
     json = fetch_response(oauth_request, connection)
     return json
