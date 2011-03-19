@@ -52,12 +52,17 @@ def get_authorisation_url(consumer, token, signature_method=signature_method):
     oauth_request.sign_request(signature_method, consumer, token)
     return oauth_request.to_url()
 
-def exchange_request_token_for_access_token(consumer, connection, request_token, signature_method=signature_method):
+def get_oauth_url(oauth_request):
+    url = oauth_request.to_url()
+    package = urllib.urlopen(url)
+    return package.read()
+
+def exchange_request_token_for_access_token(consumer, request_token, signature_method=signature_method, params={}):
     oauth_request = oauth.OAuthRequest.from_consumer_and_token(
-        consumer, token=request_token, http_url=ACCESS_TOKEN_URL
+        consumer, token=request_token, http_url=ACCESS_TOKEN_URL, parameters=params
     )
     oauth_request.sign_request(signature_method, consumer, request_token)
-    resp = fetch_response(oauth_request, connection)
+    resp = get_oauth_url(oauth_request)
     return oauth.OAuthToken.from_string(resp) 
 
 def is_authenticated(consumer, connection, access_token):

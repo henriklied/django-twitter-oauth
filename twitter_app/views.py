@@ -48,7 +48,8 @@ def return_(request):
     token = oauth.OAuthToken.from_string(unauthed_token)   
     if token.key != request.GET.get('oauth_token', 'no-token'):
         return HttpResponse("Something went wrong! Tokens do not match")
-    access_token = exchange_request_token_for_access_token(CONSUMER, CONNECTION, token)
+    verifier = request.GET.get('oauth_verifier')
+    access_token = exchange_request_token_for_access_token(CONSUMER, token, params={'oauth_verifier':verifier})
     response = HttpResponseRedirect(reverse('twitter_oauth_friend_list'))
     request.session['access_token'] = access_token.to_string()
     return response
